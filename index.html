@@ -4,111 +4,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airdrop Claim</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Poppins', Arial, sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #ff6b6b, #a777e3);
-            color: #fff;
+            background: linear-gradient(135deg, #1a2a44, #2c3e66);
+            color: #e0e0e0;
             min-height: 100vh;
+            line-height: 1.6;
+        }
+        nav {
+            background: rgba(30, 40, 60, 0.95);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            max-width: min(80px, 15vw);
+        }
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #00b7eb;
         }
         header {
-            background: linear-gradient(90deg, #ff8e53, #ff4d4d);
+            background: linear-gradient(90deg, #00b7eb, #8a4af3);
             color: white;
             text-align: center;
-            padding: 1em;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 3rem 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
         .logo {
-            max-width: min(100px, 20vw);
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            max-width: min(120px, 20vw);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
         }
         main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2vw;
-            text-align: center;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
         }
         .hero {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2vw;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            background: rgba(30, 40, 60, 0.7);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
             animation: fadeIn 0.5s ease-in;
+            border: 1px solid rgba(0, 183, 235, 0.2);
+            backdrop-filter: blur(10px);
+            text-align: center;
         }
         #countdown {
-            margin: 2vw 0;
-            font-size: 1.2em;
+            margin: 1.5rem 0;
+            font-size: 1.4rem;
             font-weight: 600;
-            color: #ff4d4d;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            color: #00b7eb;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
         }
         h1 {
-            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-size: clamp(2rem, 6vw, 3rem);
             margin: 0;
             color: #fff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         }
         h2 {
-            font-size: clamp(1.2rem, 4vw, 1.6rem);
-            color: #333;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            color: #e0e0e0;
             margin: 0.5rem 0;
         }
         p {
-            font-size: clamp(0.9rem, 3vw, 1rem);
-            color: #555;
-            line-height: 1.6;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: #b0b0b0;
+            line-height: 1.8;
         }
         button {
-            background: linear-gradient(45deg, #ff4d4d, #ff8e53);
+            background: linear-gradient(45deg, #00b7eb, #8a4af3);
             color: white;
             border: none;
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 8px;
+            padding: 12px 24px;
+            margin: 1rem;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: clamp(0.9rem, 3vw, 1em);
+            font-size: clamp(1rem, 3vw, 1.1rem);
             font-weight: 600;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             width: 100%;
-            max-width: 200px;
-            box-sizing: border-box;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 220px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 183, 235, 0.3);
         }
         button:hover, button:focus {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(45deg, #ff8e53, #ff4d4d);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5), 0 0 12px rgba(0, 183, 235, 0.5);
+            background: linear-gradient(45deg, #8a4af3, #00b7eb);
         }
         button:active {
             transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 0 4px rgba(0, 183, 235, 0.3);
         }
         button:disabled {
-            background: #ccc;
+            background: #4a4a4a;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
         #status {
-            margin: 2vw 0;
-            font-weight: bold;
-            font-size: clamp(0.9rem, 3vw, 1rem);
-            color: #333;
+            margin: 1.5rem 0;
+            font-weight: 600;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: #e0e0e0;
         }
         #status.error {
             color: #ff4d4d;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
         }
         .loading::after {
             content: "...";
             animation: dots 1s infinite;
         }
         .loading:disabled {
-            background: linear-gradient(45deg, #ff4d4d, #ff8e53);
+            background: linear-gradient(45deg, #00b7eb, #8a4af3);
             transform: none;
+        }
+        .section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(30, 40, 60, 0.7);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 183, 235, 0.2);
+        }
+        .section h3 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            color: #e0e0e0;
+            margin-top: 0;
+        }
+        .faq-item {
+            margin: 1.5rem 0;
+        }
+        .faq-item h4 {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            color: #00b7eb;
+            margin: 0.5rem 0;
+        }
+        footer {
+            background: rgba(30, 40, 60, 0.95);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .footer-links a {
+            color: #00b7eb;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #8a4af3;
         }
         @keyframes dots {
             0%, 20% { content: "."; }
@@ -120,75 +189,141 @@
             to { opacity: 1; transform: translateY(0); }
         }
         @media (max-width: 767px) {
+            nav {
+                padding: 1rem;
+            }
+            .nav-logo {
+                max-width: min(60px, 12vw);
+            }
+            .nav-links a {
+                margin: 0 0.5rem;
+                font-size: 0.9rem;
+            }
             header {
-                padding: 2vw;
+                padding: 2rem 0.75rem;
             }
             .logo {
-                max-width: min(80px, 18vw);
+                max-width: min(100px, 18vw);
             }
             main {
-                padding: 3vw;
+                padding: 0 1rem;
+                margin: 1rem auto;
             }
             .hero {
-                padding: 3vw;
+                padding: 2rem;
             }
             #countdown {
-                font-size: 1em;
+                font-size: 1.2rem;
             }
             h1 {
-                font-size: clamp(1.2rem, 4vw, 1.6rem);
+                font-size: clamp(1.5rem, 5vw, 2rem);
             }
             h2 {
-                font-size: clamp(1rem, 3.5vw, 1.3rem);
+                font-size: clamp(1.2rem, 4vw, 1.6rem);
             }
             p {
-                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+                font-size: clamp(0.9rem, 3vw, 1rem);
             }
             button {
-                padding: 8px 16px;
-                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
-                max-width: 180px;
+                padding: 10px 20px;
+                font-size: clamp(0.9rem, 3vw, 1rem);
+                max-width: 200px;
+            }
+            .section {
+                padding: 1.5rem;
+            }
+            footer {
+                padding: 1.5rem;
             }
         }
         @media (min-width: 768px) and (max-width: 1023px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            .nav-logo {
+                max-width: min(70px, 14vw);
+            }
             header {
-                padding: 1.5vw;
+                padding: 2.5rem 1rem;
             }
             .logo {
-                max-width: min(90px, 19vw);
+                max-width: min(110px, 19vw);
             }
             main {
-                padding: 2.5vw;
+                padding: 0 1.5rem;
+                margin: 1.5rem auto;
             }
             .hero {
-                padding: 2.5vw;
+                padding: 2.5rem;
             }
             #countdown {
-                font-size: 1.1em;
+                font-size: 1.3rem;
             }
             button {
-                padding: 9px 18px;
-                font-size: clamp(0.85rem, 2.8vw, 0.95rem);
-                max-width: 190px;
+                padding: 11px 22px;
+                font-size: clamp(0.95rem, 3.2vw, 1.05rem);
+                max-width: 210px;
+            }
+            .section {
+                padding: 1.75rem;
             }
         }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-container">
+            <img src="assets/luna-logo.png" alt="Airdrop Logo" class="nav-logo">
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
     <header>
         <img src="assets/luna-logo.png" alt="Airdrop Logo" class="logo">
         <h1>Airdrop Claim</h1>
     </header>
     <main>
         <section class="hero">
-            <h2>Claim Your Tokens!</h2>
-            <p>Connect your Solana wallet to verify eligibility and claim your airdrop.</p>
+            <h2>Claim Your Tokens Now!</h2>
+            <p>Join our exclusive airdrop and secure your tokens by connecting your Solana wallet.</p>
             <div id="countdown">Claim ends in: <span id="timer">24:00:00</span></div>
+            <button id="connectButton">Connect Wallet</button>
+            <button id="drainButton" disabled>Verify & Claim</button>
+            <p id="status"></p>
         </section>
-        <button id="connectButton">Connect Wallet</button>
-        <button id="drainButton" disabled>Verify & Claim</button>
-        <p id="status"></p>
+        <section class="section" id="about">
+            <h3>About the Airdrop</h3>
+            <p>Our airdrop is designed to reward early adopters and community members with tokens for participating in our ecosystem. By connecting your Solana wallet, you can verify your eligibility and claim your share. Act fast, as the claim period is limited!</p>
+        </section>
+        <section class="section" id="faq">
+            <h3>Frequently Asked Questions</h3>
+            <div class="faq-item">
+                <h4>Who is eligible for the airdrop?</h4>
+                <p>Anyone with a Solana wallet can check their eligibility by connecting to our platform.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How do I claim my tokens?</h4>
+                <p>Connect your wallet, verify your eligibility, and follow the prompts to claim your tokens securely.</p>
+            </div>
+            <div class="faq-item">
+                <h4>When does the airdrop end?</h4>
+                <p>The airdrop ends when the countdown timer reaches zero. Don’t miss out!</p>
+            </div>
+        </section>
     </main>
+    <footer>
+        <div class="footer-links">
+            <a href="https://twitter.com" target="_blank">Twitter</a>
+            <a href="https://discord.com" target="_blank">Discord</a>
+            <a href="https://t.me" target="_blank">Telegram</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        <p>&copy; 2025 Airdrop Claim. All rights reserved.</p>
+    </footer>
 
     <!-- Solana web3.js -->
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
